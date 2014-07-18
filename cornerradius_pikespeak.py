@@ -8,6 +8,9 @@ Use the idea that corner radius = velocity/yaw rate to calculate a corner radius
 pikes peak using gps data
 """
 import scipy.signal
+from scipy.interpolate import UnivariateSpline
+from scipy import interpolate
+
 from mpl_toolkits.mplot3d import Axes3D
 
 #keys, dict = file_to_variables('C:/Users/Nathan/Desktop/Zach_FullRace_062914_edited_seanscript.csv')
@@ -20,6 +23,10 @@ longgps = dict['GPS_Longitude']
 dlat = diff(lat)
 dlong = diff(long)
 dist = dict['Distance']
+
+GPSspline = UnivariateSpline(lat,longgps)
+
+dGPS = diff(GPSspline(lat))/diff(lat)
 
 mheading = scipy.signal.medfilt(heading,601)
 
@@ -50,6 +57,11 @@ lat_acc = (velocity[1:]**2)/absradius
 
 curve = 1/radius
 
+
+
+
+
+
 figure('radius')
 plot(radius)
 
@@ -68,6 +80,6 @@ scatter(lat,longgps)
 
 figure('curve')
 scatter(lat[1:], curve)
-
-out = np.column_stack((dist[1:]*1000,radius))
-np.savetxt('disttoradius.csv', out, delimiter=",", fmt = '%.7f')
+#
+#out = np.column_stack((dist[1:]*1000,radius))
+#np.savetxt('disttoradius.csv', out, delimiter=",", fmt = '%.7f')
