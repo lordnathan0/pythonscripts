@@ -13,15 +13,13 @@ from scipy import interpolate
 
 from mpl_toolkits.mplot3d import Axes3D
 
-#keys, dict = file_to_variables('C:/Users/Nathan/Desktop/Zach_FullRace_062914_edited_seanscript.csv')
+keys, dict = file_to_variables('C:/Users/Nathan/Desktop/Zach_FullRace_062914_edited_seanscript.csv')
 
 heading = dict['GPS_Heading']
 velocity = dict['GPS_Speed'] * .44704
 time = dict['Time']
 lat = dict['GPS_Latitude']
 longgps = dict['GPS_Longitude']
-dlat = diff(lat)
-dlong = diff(long)
 dist = dict['Distance']
 
 GPSspline = UnivariateSpline(lat,longgps)
