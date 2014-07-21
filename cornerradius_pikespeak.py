@@ -60,24 +60,24 @@ curve = 1/radius
 
 
 
-figure('radius')
-plot(radius)
-
-figure('absradius')
-plot(absradius)
-
-figure('yaw')
-plot(yawrate)
-
+#figure('radius')
+#plot(radius)
+#
+#figure('absradius')
+#plot(absradius)
+#
+#figure('yaw')
+#plot(yawrate)
+#
 figure('lat acc')
 plot(lat_acc)
-
-
-figure('gps')
-scatter(lat,longgps)
-
-figure('curve')
-scatter(lat[1:], curve)
+#
+#
+#figure('gps')
+#scatter(lat,longgps)
+#
+#figure('curve')
+#scatter(lat[1:], curve)
 #
 #out = np.column_stack((dist[1:]*1000,radius))
 #np.savetxt('disttoradius.csv', out, delimiter=",", fmt = '%.7f')
