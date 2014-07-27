@@ -10,11 +10,11 @@ Created on Sun Jul 20 16:18:42 2014
 import math
 from scipy.interpolate import UnivariateSpline
 
-max_lat = 9.0
-max_decell = 9.0
+max_lat = 9
+max_decell = 13
 
-keys, dict = file_to_variables('C:/Users/Nathan/Desktop/random python scripts/disttoradius.csv')
-#keys, zach = file_to_variables('C:/Users/Nathan/Desktop/Zach_FullRace_062914_edited_seanscript.csv')
+keys, dict = file_to_variables('C:/Users/Nathan/Desktop/random python scripts/pikes_peak_updated_20pt_least_sqaures.csv')
+keys, zach = file_to_variables('C:/Users/Nathan/Desktop/Zach_FullRace_062914_edited_seanscript.csv')
 
 zspeed = zach['GPS_Speed']
 zdist = zach['Distance'] * 1000
@@ -70,13 +70,14 @@ for k in range(i,0,-1):
 figure('cdts')
 plot(dist,cdts/.44704, 'b')
 plot(zdist,zspeed, 'r')
+#
+#figure('gps cdts')
+#scatter(zlat[:1],zlong[:1], c = (cdts[:1]/.44704), edgecolors = 'none', vmin = 0, vmax = 100)
+#colorbar()
+#
+#figure('gps zach')
+#scatter(zlat,zlong, c = zspeed, edgecolors = 'none', vmin = 0, vmax = 100)
+#colorbar()
 
-figure('gps cdts')
-scatter(zlat[:1],zlong[:1], c = (cdts[:1]/.44704), edgecolors = 'none', vmin = 0, vmax = 100)
-colorbar()
-
-figure('gps zach')
-scatter(zlat,zlong, c = zspeed, edgecolors = 'none', vmin = 0, vmax = 100)
-colorbar()
-
-    
+out = np.column_stack((dist,cdts))
+np.savetxt('least_square_cdts_9_13.csv', out, delimiter=",", fmt = '%.7f')
