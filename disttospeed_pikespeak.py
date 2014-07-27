@@ -10,8 +10,12 @@ keys, dict = file_to_variables('C:/Users/Nathan/Desktop/Zach_FullRace_062914_edi
 
 velocity = dict['GPS_Speed'] * .44704
 
-dist = dict['Distance']
+time = dict['Time']
 
+dist = zeros(size(time))
 
-out = np.column_stack((dist*1000,velocity))
+for i in range(size(velocity)-1): 
+ dist[i+1] = dist[i] + velocity[i]*(diff(time))[i]
+ 
+out = np.column_stack((dist,velocity))
 np.savetxt('disttospeed.csv', out, delimiter=",", fmt = '%.7f')
